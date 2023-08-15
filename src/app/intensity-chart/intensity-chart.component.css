@@ -1,0 +1,14 @@
+.intensity-chart {
+  width: 100%;
+  height: 300px;
+  animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

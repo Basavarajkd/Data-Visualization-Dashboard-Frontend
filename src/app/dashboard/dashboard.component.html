@@ -1,0 +1,46 @@
+<div class="dashboard">
+    <!-- ... Other components ... -->
+
+    <div class="filters-container">
+      <app-filters
+        [data]="dataTableData"
+        (filteredData)="updateFilteredData($event)">
+      </app-filters> 
+    </div> 
+  
+    <div class="country-pie-chart">
+      <app-country-pie-chart [data]="filteredData"></app-country-pie-chart>
+    </div> 
+
+    <div class="region-line-chart">
+      <app-region-line-chart [data]="filteredData"></app-region-line-chart>
+    </div>  
+
+    
+    <app-intensity-chart [data]="filteredData"></app-intensity-chart>
+    
+
+     <div class="relevance-chart-container">
+      <app-relevance-chart [data]="filteredData"></app-relevance-chart>
+    </div> 
+
+
+    <div class="likelihood-chart-container">
+      <app-likelihood-chart [data]="filteredData"></app-likelihood-chart>
+    </div>
+
+    <!-- <div class="topic-chart-container">
+      <app-topic-chart [data]="topicChartData"></app-topic-chart>
+    </div> -->
+    
+
+   
+
+    <div class="city-chart-container">
+      <app-city-chart [data]="filteredData"></app-city-chart>
+    </div>
+
+   <div class="table-container">
+    <app-data-table [data]="filteredData"></app-data-table>
+  </div> 
+</div>

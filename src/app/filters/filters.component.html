@@ -1,0 +1,57 @@
+<!-- Inside your component's HTML template -->
+<div class="filters-container">
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">End Year:</label>
+    <input type="number" [(ngModel)]="selectedEndYear" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Sector:</label>
+    <input type="number" [(ngModel)]="selectedSector" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Topics:</label>
+    <input type="string" [(ngModel)]="selectedTopic" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Region:</label>
+    <input type="string" [(ngModel)]="selectedRegion" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Pest:</label>
+    <input type="string" [(ngModel)]="selectedPEST" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Source:</label>
+    <input type="string" [(ngModel)]="selectedSource" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Swot:</label>
+    <input type="string" [(ngModel)]="selectedSwot" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Country:</label>
+    <input type="string" [(ngModel)]="selectedCountry" (change)="applyFilters()" />
+  </div>
+
+  <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">City:</label>
+    <input type="string" [(ngModel)]="selectedCity" (change)="applyFilters()" />
+  </div>
+
+  <!-- <div class="filter" (mouseenter)="onFilterMouseEnter()" (mouseleave)="onFilterMouseLeave()">
+    <label class="filter-label">Year:</label>
+    <input type="number" [(ngModel)]="selectedYear" (change)="applyFilters()" />
+  </div> -->
+
+
+  <!-- Repeat similar blocks for other filters -->
+
+  <button class="apply-filters-button" (click)="applyFilters()">Apply Filters</button>
+</div>

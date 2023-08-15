@@ -1,0 +1,29 @@
+<div class="container">
+    <!-- Data Table -->
+    <app-data-table [data]="data"></app-data-table>
+    
+    <!-- Charts -->
+    <div class="chart-section">
+      <div class="chart-row">
+        <div class="chart-column">
+          <!-- Relevance Chart Component -->
+          <app-relevance-chart></app-relevance-chart>
+        </div>
+        <div class="chart-column">
+          <!-- Intensity Chart Component -->
+          <app-intensity-chart></app-intensity-chart>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-column">
+          <!-- Chart Component 3 -->
+          <app-city-chart></app-city-chart>
+        </div>
+        <div class="chart-column">
+          <!-- Chart Component 4 -->
+          <app-likelihood-chart></app-likelihood-chart>
+        </div>
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,57 @@
+.filters-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Add spacing between filter fields */
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Add spacing between label and input */
+  padding: 5px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.filter:hover {
+  background-color: #e0e0e0; /* Change to your desired hover background color */
+}
+
+.filter-label {
+  font-weight: bold;
+  color: #333; /* Change to your desired label color */
+  min-width: 100px; /* Set a minimum width for the label */
+}
+
+.filter:hover .filter-label {
+  color: #007bff; /* Change to your desired hover label color */
+}
+
+.filter-input {
+  flex: 1; /* Expand the input to fill remaining space */
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding: 3px 5px;
+  transition: border-color 0.3s ease;
+}
+
+.filter-input:focus {
+  outline: none;
+  border-color: #007bff; /* Change to your desired focus border color */
+}
+
+.apply-filters-button {
+  margin-top: 15px; /* Add space between filters and Apply button */
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.apply-filters-button:hover {
+  background-color: #0056b3; /* Change to your desired hover background color */
+}

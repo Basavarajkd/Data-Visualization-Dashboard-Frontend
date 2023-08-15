@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+/* Set the maximum width for the entire layout */
+body {
+  background-color: #fdfa5aef; /* Light blue background color */
+  margin: 0; /* Reset default margin to remove spacing */
+  padding: 0; /* Reset default padding to remove spacing */
+}
+.container {
+  max-width: 1200px; /* Adjust the value as needed */
+  margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Set the size of individual chart components */
+.app-chart {
+  width: 100%; /* Full width of the container */
+  max-width: 600px; /* Adjust the value as needed */
+}
+
+/* Set the size of the filters container */
+.filters-container {
+  max-width: 900px; /* Adjust the value as needed */
+  margin: 0 auto; /* Center the container horizontally */
+}
+

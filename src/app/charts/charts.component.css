@@ -1,0 +1,15 @@
+.chart-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.chart-row {
+  display: flex;
+  margin-bottom: 20px; /* Adjust spacing between rows */
+}
+
+.chart-column {
+  flex: 1;
+  margin-right: 20px; /* Adjust spacing between columns */
+}

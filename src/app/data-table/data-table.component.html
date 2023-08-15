@@ -1,0 +1,29 @@
+<div class="data-table">
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Intensity</th>
+        <th>Likelihood</th>
+        <th>Relevance</th>
+        <th>Country</th>
+        <th>Topics</th>
+        <th>Region</th>
+        <th>City</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of data">
+        <td>{{ item.title }}</td>
+        <td>{{ item.intensity }}</td>
+        <td>{{ item.likelihood }}</td>
+        <td>{{ item.relevance }}</td>
+        <td>{{ item.country }}</td>
+        <td>{{ item.topic }}</td>
+        <td>{{ item.region }}</td>
+        <td>{{ item.city }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

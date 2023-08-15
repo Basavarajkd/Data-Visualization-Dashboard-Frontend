@@ -1,0 +1,60 @@
+.data-table-container {
+  max-width: 100%;
+  margin-bottom: 20px;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #4a9eec;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.data-table th,
+.data-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+
+}
+
+.data-table th {
+  background-color: #4a9eec; /* Light blue background color */
+  ;
+}
+
+.table-row {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.5s forwards;
+  animation-delay: 0.2s;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hover effect */
+.data-table tbody tr:hover {
+  background-color: #a0a2a3;
+
+}
+
+/* Responsive styling */
+@media screen and (max-width: 768px) {
+  .data-table th,
+  .data-table td {
+    padding: 10px 12px;
+  }
+}
+.table-container {
+  position: absolute;
+  top: 700px; /* Adjust the top distance from the header */
+  left: 10px; /* Adjust the left distance from the side nav */
+  width: calc(100% - 60px); /* Adjust the width */
+  z-index: 1000; /* Set z-index to ensure it's above other content */
+}
