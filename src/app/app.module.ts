@@ -19,14 +19,11 @@ import { RelevanceChartComponent } from './relevance-chart/relevance-chart.compo
 import { CountryPieChartComponent } from './country-pie-chart/country-pie-chart.component';
 import { RegionLineChartComponent } from './region-line-chart/region-line-chart.component';
 import { CityChartComponent } from './city-chart/city-chart.component';
-import { TopicsBarChartComponent } from './topics-bar-chart/topics-bar-chart.component';
 import { FilterdetailsComponent } from './filterdetails/filterdetails.component';
 import { FilterOptionsComponent } from './filter-options/filter-options.component';
 import { SidenavComponent } from './side-nav/side-nav.component';
-import { IntensityChartComponent } from './intensity-chart/intensity-chart.component';
 import { LikelihoodChartComponent } from './likelihood-chart/likelihood-chart.component';
 import { TopicChartComponent } from './topic-chart/topic-chart.component';
-
 
 @NgModule({
   declarations: [
@@ -42,15 +39,13 @@ import { TopicChartComponent } from './topic-chart/topic-chart.component';
     CountryPieChartComponent,
     RegionLineChartComponent,
     CityChartComponent,
-    TopicsBarChartComponent,
     FilterdetailsComponent,
     FilterOptionsComponent,
     HeaderComponent,
     SidenavComponent,
-    IntensityChartComponent,
     LikelihoodChartComponent,
-    TopicChartComponent, 
-   ],
+    TopicChartComponent,
+     ],
   imports: [
     BrowserModule,
     AppRoutingModule,

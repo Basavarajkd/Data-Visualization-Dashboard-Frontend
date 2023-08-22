@@ -1,0 +1,10 @@
+topic-chart.component.css
+.topic-chart-container {
+    position: absolute;
+    top: 5px;
+    left: 1180px;
+    width: 200px;
+    background-color: #e6f7ff;
+    z-index: 1000;
+  }
+  

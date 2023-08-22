@@ -1,9 +1,4 @@
 export interface DataDTO {
-    topicD: undefined;
-    topicC: undefined;
-    topicB: undefined;
-    topicA: undefined;
-    name: any;
     endyear: number;
     citylng: number;
     citylat: number;

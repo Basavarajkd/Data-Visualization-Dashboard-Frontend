@@ -56,4 +56,4 @@ export class LikelihoodChartComponent implements OnChanges {
       .attr('y', d => y(d.likelihood as number) as number) // Explicitly cast y value to number
       .attr('height', d => height - y(d.likelihood as number) as number); // Explicitly cast height value to number
   }
-}  
+} 

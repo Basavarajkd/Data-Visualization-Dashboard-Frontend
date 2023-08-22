@@ -1,107 +1,83 @@
-import { Component, OnInit, OnChanges, ViewChild, ElementRef, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ElementRef } from '@angular/core';
 import * as d3 from 'd3';
+import { DataDTO } from '../models/data-dto.model';
+
+interface TopicData {
+  topic: string;
+  count: number;
+}
 
 @Component({
   selector: 'app-topic-chart',
   templateUrl: './topic-chart.component.html',
-  styleUrls: ['./topic-chart.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./topic-chart.component.css']
 })
-export class TopicChartComponent implements OnInit, OnChanges {
-  @ViewChild('chart') private chartContainer!: ElementRef; // Note the '!' operator
-  @Input()
-  data!: Array<any>;
-  private margin: any = { top: 20, bottom: 20, left: 40, right: 20 }; // Adjusted margin for labels
-  private chart: any;
-  private width: number=0;
-  private height: number=0;
-  private xScale: any;
-  private yScale: any;
-  private colors: any;
-  private xAxis: any;
-  private yAxis: any;
+export class TopicChartComponent implements OnChanges {
+  @Input() data: DataDTO[] = [];
 
-  constructor() { }
+  constructor(private el: ElementRef) {}
 
-  ngOnInit() {
-    this.createChart();
-    if (this.data) {
-      this.updateChart();
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue) {
+      this.updateTopicChart();
     }
   }
 
-  ngOnChanges() {
-    if (this.chart) {
-      this.updateChart();
-    }
-  }
+  private updateTopicChart(): void {
+    // Clear previous chart
+    d3.select(this.el.nativeElement).select('svg').remove();
 
-  createChart() {
-    let element = this.chartContainer.nativeElement;
-    this.width = element.offsetWidth - this.margin.left - this.margin.right;
-    this.height = element.offsetHeight - this.margin.top - this.margin.bottom;
-    let svg = d3.select(element).append('svg')
-      .attr('width', element.offsetWidth)
-      .attr('height', element.offsetHeight);
+    const width = 400;
+    const height = 300;
+    const margin = { top: 20, right: 20, bottom: 40, left: 40 };
+    const svg = d3.select(this.el.nativeElement).append('svg')
+      .attr('width', width)
+      .attr('height', height);
 
-    // chart plot area
-    this.chart = svg.append('g')
-      .attr('class', 'bars')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`);
+    const chartWidth = width - margin.left - margin.right;
+    const chartHeight = height - margin.top - margin.bottom;
 
-    // define X & Y domains
-    let xDomain = this.data.map(d => d.name);
-    let yDomain = [0, d3.max(this.data, d => d.topicA + d.topicB + d.topicC + d.topicD)];
+    const topicData: TopicData[] = Array.from(
+      d3.rollup(
+        this.data.filter(d => d.topic !== undefined && d.topic !== null),
+        v => v.length,
+        d => d.topic!
+      ),
+      ([topic, count]) => ({ topic, count })
+    );
 
-    // create scales
-    this.xScale = d3.scaleBand().padding(0.1).domain(xDomain).rangeRound([0, this.width]);
-    this.yScale = d3.scaleLinear().domain(yDomain).range([this.height, 0]);
+    const validCounts = topicData.map(d => d.count).filter(count => count !== undefined) as number[];
+    const maxCount = d3.max(validCounts) || 0;
 
-    // bar colors
-    this.colors = d3.scaleOrdinal().domain(['topicA', 'topicB', 'topicC', 'topicD'])
-      .range(d3.schemeCategory10);
+    const x = d3.scaleBand()
+      .domain(topicData.map(d => d.topic))
+      .range([0, chartWidth])
+      .padding(0.1);
 
-    // x & y axis
-    this.xAxis = svg.append('g')
-      .attr('class', 'axis axis-x')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top + this.height})`)
-      .call(d3.axisBottom(this.xScale));
-    this.yAxis = svg.append('g')
-      .attr('class', 'axis axis-y')
-      .attr('transform', `translate(${this.margin.left}, ${this.margin.top})`)
-      .call(d3.axisLeft(this.yScale).ticks(10, '%'));
-  }
+    const y = d3.scaleLinear()
+      .domain([0, maxCount])
+      .nice()
+      .range([chartHeight, 0]);
 
-  updateChart() {
-    // update scales & axis
-    this.xScale.domain(this.data.map(d => d.name));
-    this.yScale.domain([0, d3.max(this.data, d => d.topicA + d.topicB + d.topicC + d.topicD)]);
-    this.colors.domain(['topicA', 'topicB', 'topicC', 'topicD']);
-    this.xAxis.transition().call(d3.axisBottom(this.xScale));
-    this.yAxis.transition().call(d3.axisLeft(this.yScale).ticks(10, '%'));
+    const g = svg.append('g')
+      .attr('transform', `translate(${margin.left},${margin.top})`);
 
-    let series = this.chart.selectAll('.series')
-      .data(this.data);
-
-    series.exit().remove();
-
-    let update = series.selectAll('.bar')
-      .data((d: any) => [d.topicA, d.topicB, d.topicC, d.topicD]);
-
-    update.exit().remove();
-
-    update.transition()
-      .attr('y', (d: any) => this.yScale(d[1]))
-      .attr('height', (d: any) => this.yScale(d[0]) - this.yScale(d[1]))
-      .style('fill', (d: any, i: number) => this.colors(i))
-      .attr('x', (d: any) => this.xScale(d.data.name))
-      .attr('y', (d: any) => this.yScale(d[1]))
-      .attr('height', (d: any) => this.yScale(d[0]) - this.yScale(d[1]))
-      .transition()
-      .delay((d: any, i: number) => i * 10)
-      .attr('y', (d: any) => this.yScale(d[1]))
-      .attr('height', (d: any) => this.yScale(d[0]) - this.yScale(d[1]));
-
-    // ... (rest of the function)
+      g.selectAll('.bar')
+      .data(topicData)
+      .enter().append('rect')
+        .attr('class', 'bar')
+        .attr('x', d => x(d.topic)! + '') // Convert x position to string explicitly
+        .attr('y', d => y(d.count))
+        .attr('width', x.bandwidth())
+        .attr('height', d => chartHeight - y(d.count));
+  
+    g.append('g')
+      .attr('class', 'x-axis')
+      .attr('transform', `translate(0,${chartHeight})`)
+      .call(d3.axisBottom(x));
+    
+    g.append('g')
+      .attr('class', 'y-axis')
+      .call(d3.axisLeft(y));
   }
 }

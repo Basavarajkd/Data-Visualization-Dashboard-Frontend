@@ -1,0 +1,10 @@
+/* Drop shadow filter */
+.pie-chart {
+    filter: url(#drop-shadow);
+  }
+  
+  /* Define the drop shadow */
+  defs {
+    filter: url(#drop-shadow);
+  }
+  
